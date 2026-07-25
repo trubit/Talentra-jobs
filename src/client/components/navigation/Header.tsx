@@ -96,11 +96,12 @@ export function Header() {
       color="default"
       elevation={isScrolled ? 2 : 0}
       sx={{
-        bgcolor: isScrolled ? 'background.paper' : 'transparent',
+        bgcolor: 'background.paper',
         borderBottom: '1px solid',
         borderColor: isScrolled ? 'divider' : 'transparent',
         transition: 'all 0.2s ease-in-out',
         backdropFilter: 'blur(8px)',
+        zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
     >
       <Container maxWidth="xl">
