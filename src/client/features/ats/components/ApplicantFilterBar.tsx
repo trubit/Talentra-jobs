@@ -54,10 +54,10 @@ export function ApplicantFilterBar({
             ),
           },
         }}
-        sx={{ minWidth: 260, flexGrow: 1 }}
+        sx={{ minWidth: { xs: '100%', sm: 260 }, flexGrow: 1 }}
       />
 
-      <FormControl size="small" sx={{ minWidth: 180 }}>
+      <FormControl size="small" sx={{ minWidth: { xs: '100%', sm: 180 } }}>
         <InputLabel>Status Stage</InputLabel>
         <Select value={status} label="Status Stage" onChange={(e) => onStatusChange(e.target.value)}>
           {STATUS_OPTIONS.map((opt) => (
@@ -68,7 +68,7 @@ export function ApplicantFilterBar({
         </Select>
       </FormControl>
 
-      <FormControl size="small" sx={{ minWidth: 180 }}>
+      <FormControl size="small" sx={{ minWidth: { xs: '100%', sm: 180 } }}>
         <InputLabel>Sort By</InputLabel>
         <Select value={sortBy} label="Sort By" onChange={(e) => onSortByChange(e.target.value)}>
           <MenuItem value="date_desc">Newest Applied</MenuItem>

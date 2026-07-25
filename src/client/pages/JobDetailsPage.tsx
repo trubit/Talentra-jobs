@@ -191,7 +191,7 @@ export function JobDetailsPage() {
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, md: 8 }}>
           <Paper elevation={0} sx={{ p: 4, borderRadius: '20px', border: '1px solid', borderColor: 'divider', mb: 4 }}>
-            <Stack direction="row" spacing={3} alignItems="flex-start" sx={{ mb: 3 }}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2.5} alignItems={{ xs: 'center', sm: 'flex-start' }} textAlign={{ xs: 'center', sm: 'left' }} sx={{ mb: 3 }}>
               <Avatar
                 src={job.company?.logoUrl}
                 variant="rounded"
