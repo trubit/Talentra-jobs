@@ -7,9 +7,7 @@ import { AppError } from '../../../utils/AppError.js';
 
 const router = Router();
 
-router.use(authenticate);
-
-router.get('/applications/:id/history', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/applications/:id/history', authenticate, async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user!._id.toString();
@@ -33,7 +31,7 @@ router.get('/applications/:id/history', async (req: Request, res: Response, next
   }
 });
 
-router.get('/applications/:id/activity', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/applications/:id/activity', authenticate, async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const userId = req.user!._id.toString();

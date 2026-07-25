@@ -44,16 +44,19 @@ export function createApp(): Application {
   // ── Security middleware (Helmet, CORS, Compression, Rate Limit) ──────────
   app.use(createSecurityMiddleware());
 
-  // ── API Routes ───────────────────────────────────────────────────────────
+  // ── Public API Routes ───────────────────────────────────────────────────
   app.use('/api/health', healthRouter);
+  app.use('/api/v1/stats', statsRouter);
+  app.use('/api/v1/job-categories', categoryRouter);
+  app.use('/api/v1/job-types', jobTypeRouter);
+  app.use('/api/v1/job-locations', jobLocationRouter);
+
+  // ── Domain & Auth API Routes ─────────────────────────────────────────────
   app.use('/api/v1/auth', authRouter);
   app.use('/api/v1/profile', profileRouter);
   app.use('/api/v1/company', companyRouter);
   app.use('/api/v1/resume', resumeRouter);
   app.use('/api/v1/media', mediaRouter);
-  app.use('/api/v1/job-categories', categoryRouter);
-  app.use('/api/v1/job-types', jobTypeRouter);
-  app.use('/api/v1/job-locations', jobLocationRouter);
   app.use('/api/v1/jobs', jobRouter);
   app.use('/api/v1/employer', employerJobRouter);
   app.use('/api/v1', bookmarkRouter);
@@ -65,7 +68,6 @@ export function createApp(): Application {
   app.use('/api/v1/hiring', hiringRouter);
   app.use('/api/v1', historyRouter);
   app.use('/api/v1', statusRouter);
-  app.use('/api/v1/stats', statsRouter);
 
   // ── 404 → must come after all routes ────────────────────────────────────
   app.use(notFoundHandler);
