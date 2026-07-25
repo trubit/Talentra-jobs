@@ -145,6 +145,24 @@ export function MobileDrawer({ open, onClose, navItems }: MobileDrawerProps) {
                 <Button
                   fullWidth
                   variant="outlined"
+                  startIcon={<BusinessIcon />}
+                  onClick={() => handleNav('/interviews/me')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  My Scheduled Interviews
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  startIcon={<BusinessIcon />}
+                  onClick={() => handleNav('/offers/me')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  My Job Offers
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
                   startIcon={<BookmarkIcon />}
                   onClick={() => handleNav('/bookmarks')}
                   sx={{ justifyContent: 'flex-start' }}
@@ -166,6 +184,26 @@ export function MobileDrawer({ open, onClose, navItems }: MobileDrawerProps) {
                   sx={{ justifyContent: 'flex-start' }}
                 >
                   ATS Recruitment Workspace
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<BusinessIcon />}
+                  onClick={() => handleNav('/employer/interviews')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  Interviews Portal
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<BusinessIcon />}
+                  onClick={() => handleNav('/employer/offers')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  Job Offers Portal
                 </Button>
                 <Button
                   fullWidth

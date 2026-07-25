@@ -211,108 +211,189 @@ export function EmployerAtsDashboardPage() {
           </Typography>
         </Paper>
       ) : (
-        <TableContainer component={Paper} sx={{ borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
-          <Table>
-            <TableHead>
-              <TableRow sx={{ bgcolor: 'background.surface' }}>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedIds.length === applications.length && applications.length > 0}
-                    onChange={(e) => handleSelectAll(e.target.checked)}
-                  />
-                </TableCell>
-                <TableCell sx={{ fontWeight: 800 }}>Candidate</TableCell>
-                <TableCell sx={{ fontWeight: 800 }}>Applied Job</TableCell>
-                <TableCell sx={{ fontWeight: 800 }}>Applied Date</TableCell>
-                <TableCell sx={{ fontWeight: 800 }}>Rating</TableCell>
-                <TableCell sx={{ fontWeight: 800 }}>Stage</TableCell>
-                <TableCell sx={{ fontWeight: 800 }} align="right">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {applications.map((app) => {
-                const applicant = app.applicant as unknown as { firstName?: string; lastName?: string; email?: string; avatarUrl?: string };
-                return (
-                  <TableRow key={app._id} hover selected={selectedIds.includes(app._id)}>
-                    <TableCell padding="checkbox">
+        <>
+          {/* Mobile Card View (xs to md) */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 2 }}>
+            {applications.map((app) => {
+              const applicant = app.applicant as unknown as { firstName?: string; lastName?: string; email?: string; avatarUrl?: string };
+              return (
+                <Paper key={app._id} sx={{ p: 2.5, borderRadius: '16px', boxShadow: '0 4px 16px rgba(0,0,0,0.06)' }}>
+                  <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 1.5 }}>
+                    <Stack direction="row" spacing={1.5} alignItems="center">
                       <Checkbox
                         checked={selectedIds.includes(app._id)}
                         onChange={(e) => handleSelectOne(app._id, e.target.checked)}
+                        sx={{ p: 0 }}
                       />
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={1.5} alignItems="center">
-                        <Avatar src={applicant?.avatarUrl} sx={{ width: 36, height: 36 }}>
-                          {applicant?.firstName?.[0]}
-                        </Avatar>
-                        <Box>
-                          <Typography variant="subtitle2" fontWeight={700}>
-                            {applicant?.firstName || 'Candidate'} {applicant?.lastName || ''}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            {applicant?.email}
-                          </Typography>
-                        </Box>
-                        <IconButton
+                      <Avatar src={applicant?.avatarUrl} sx={{ width: 42, height: 42 }}>
+                        {applicant?.firstName?.[0]}
+                      </Avatar>
+                      <Box>
+                        <Typography variant="subtitle1" fontWeight={700}>
+                          {applicant?.firstName || 'Candidate'} {applicant?.lastName || ''}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary" display="block">
+                          {applicant?.email}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                    <IconButton
+                      size="small"
+                      color={app.flagged ? 'error' : 'default'}
+                      onClick={() => toggleFlagMutation.mutate({ id: app._id, flagged: !app.flagged })}
+                    >
+                      <FlagIcon fontSize="small" />
+                    </IconButton>
+                  </Stack>
+
+                  <Typography variant="body2" fontWeight={600} color="primary" sx={{ mb: 1 }}>
+                    Job: {app.job?.title || 'Position'}
+                  </Typography>
+
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1.5 }}>
+                    <Chip label={app.status.replace(/_/g, ' ')} size="small" color="primary" sx={{ fontWeight: 700 }} />
+                    <Typography variant="caption" color="text.secondary">
+                      Applied {new Date(app.createdAt).toLocaleDateString()}
+                    </Typography>
+                  </Stack>
+
+                  <Box sx={{ mb: 2 }}>
+                    <CandidateRating
+                      rating={app.rating || 0}
+                      onRatingChange={(newRating) => updateRatingMutation.mutate({ id: app._id, rating: newRating })}
+                    />
+                  </Box>
+
+                  <Stack direction="row" spacing={1} justifyContent="flex-end">
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      component={Link}
+                      to={`/employer/applications/${app._id}`}
+                      startIcon={<VisibilityIcon />}
+                      fullWidth
+                    >
+                      Review
+                    </Button>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => {
+                        setAnchorEl(e.currentTarget);
+                        setActiveAppId(app._id);
+                      }}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                  </Stack>
+                </Paper>
+              );
+            })}
+          </Box>
+
+          {/* Desktop Table View (md and up) */}
+          <TableContainer component={Paper} sx={{ display: { xs: 'none', md: 'block' }, borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ bgcolor: 'background.surface' }}>
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      checked={selectedIds.length === applications.length && applications.length > 0}
+                      onChange={(e) => handleSelectAll(e.target.checked)}
+                    />
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: 800 }}>Candidate</TableCell>
+                  <TableCell sx={{ fontWeight: 800 }}>Applied Job</TableCell>
+                  <TableCell sx={{ fontWeight: 800 }}>Applied Date</TableCell>
+                  <TableCell sx={{ fontWeight: 800 }}>Rating</TableCell>
+                  <TableCell sx={{ fontWeight: 800 }}>Stage</TableCell>
+                  <TableCell sx={{ fontWeight: 800 }} align="right">Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {applications.map((app) => {
+                  const applicant = app.applicant as unknown as { firstName?: string; lastName?: string; email?: string; avatarUrl?: string };
+                  return (
+                    <TableRow key={app._id} hover selected={selectedIds.includes(app._id)}>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={selectedIds.includes(app._id)}
+                          onChange={(e) => handleSelectOne(app._id, e.target.checked)}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Stack direction="row" spacing={1.5} alignItems="center">
+                          <Avatar src={applicant?.avatarUrl} sx={{ width: 36, height: 36 }}>
+                            {applicant?.firstName?.[0]}
+                          </Avatar>
+                          <Box>
+                            <Typography variant="subtitle2" fontWeight={700}>
+                              {applicant?.firstName || 'Candidate'} {applicant?.lastName || ''}
+                            </Typography>
+                            <Typography variant="caption" color="text.secondary">
+                              {applicant?.email}
+                            </Typography>
+                          </Box>
+                          <IconButton
+                            size="small"
+                            color={app.flagged ? 'error' : 'default'}
+                            onClick={() => toggleFlagMutation.mutate({ id: app._id, flagged: !app.flagged })}
+                          >
+                            <FlagIcon fontSize="small" />
+                          </IconButton>
+                        </Stack>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2" fontWeight={600}>
+                          {app.job?.title || 'Position'}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2" color="text.secondary">
+                          {new Date(app.createdAt).toLocaleDateString()}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <CandidateRating
+                          rating={app.rating || 0}
+                          onRatingChange={(newRating) => updateRatingMutation.mutate({ id: app._id, rating: newRating })}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Chip
+                          label={app.status.replace(/_/g, ' ')}
                           size="small"
-                          color={app.flagged ? 'error' : 'default'}
-                          onClick={() => toggleFlagMutation.mutate({ id: app._id, flagged: !app.flagged })}
-                        >
-                          <FlagIcon fontSize="small" />
-                        </IconButton>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2" fontWeight={600}>
-                        {app.job?.title || 'Position'}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2" color="text.secondary">
-                        {new Date(app.createdAt).toLocaleDateString()}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <CandidateRating
-                        rating={app.rating || 0}
-                        onRatingChange={(newRating) => updateRatingMutation.mutate({ id: app._id, rating: newRating })}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        label={app.status.replace(/_/g, ' ')}
-                        size="small"
-                        sx={{ fontWeight: 700 }}
-                      />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Stack direction="row" spacing={1} justifyContent="flex-end" alignItems="center">
-                        <Button
-                          size="small"
-                          variant="outlined"
-                          component={Link}
-                          to={`/employer/applications/${app._id}`}
-                          startIcon={<VisibilityIcon />}
-                        >
-                          Review
-                        </Button>
-                        <IconButton
-                          size="small"
-                          onClick={(e) => {
-                            setAnchorEl(e.currentTarget);
-                            setActiveAppId(app._id);
-                          }}
-                        >
-                          <MoreVertIcon />
-                        </IconButton>
-                      </Stack>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                          sx={{ fontWeight: 700 }}
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Stack direction="row" spacing={1} justifyContent="flex-end" alignItems="center">
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            component={Link}
+                            to={`/employer/applications/${app._id}`}
+                            startIcon={<VisibilityIcon />}
+                          >
+                            Review
+                          </Button>
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              setAnchorEl(e.currentTarget);
+                              setActiveAppId(app._id);
+                            }}
+                          >
+                            <MoreVertIcon />
+                          </IconButton>
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </>
       )}
 
       {/* Stage Transition Menu */}

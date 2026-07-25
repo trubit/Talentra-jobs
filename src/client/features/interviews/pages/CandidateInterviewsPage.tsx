@@ -68,7 +68,7 @@ export function CandidateInterviewsPage() {
                     </Typography>
                   </Box>
 
-                  <Stack spacing={1} alignItems="flex-end">
+                  <Stack spacing={1} alignItems={{ xs: 'flex-start', sm: 'flex-end' }}>
                     <Stack direction="row" spacing={1} alignItems="center">
                       <CalendarMonthIcon fontSize="small" color="action" />
                       <Typography variant="body2" fontWeight={600}>
