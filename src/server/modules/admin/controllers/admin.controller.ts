@@ -70,7 +70,7 @@ export class AdminController {
       if (!user) throw new AppError('User not found', 404);
 
       await AuditLog.create({
-        user: req.user!._id,
+        actor: req.user!._id,
         action: 'ADMIN_UPDATE_USER_STATUS',
         resource: `User:${id}`,
         ipAddress: req.ip || '127.0.0.1',
@@ -159,7 +159,7 @@ export class AdminController {
       if (!job) throw new AppError('Job not found', 404);
 
       await AuditLog.create({
-        user: req.user!._id,
+        actor: req.user!._id,
         action: 'ADMIN_DELETE_JOB',
         resource: `Job:${id}`,
         ipAddress: req.ip || '127.0.0.1',
@@ -176,7 +176,7 @@ export class AdminController {
   getAuditLogs = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const logs = await AuditLog.find()
-        .populate('user', 'firstName lastName email')
+        .populate('actor', 'firstName lastName email')
         .sort({ createdAt: -1 })
         .limit(200);
 

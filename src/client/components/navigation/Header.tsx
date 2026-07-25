@@ -26,6 +26,9 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ShieldIcon from '@mui/icons-material/Shield';
 import BusinessIcon from '@mui/icons-material/Business';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 import { NavLink } from './NavLink';
 import { MobileDrawer } from './MobileDrawer';
 import { Logo } from './Logo';
@@ -180,21 +183,25 @@ export function Header() {
 
                   {/* EMPLOYER menu items */}
                   {(user.role === 'EMPLOYER' || user.role === 'ADMIN') && [
+                    <MenuItem key="nav-emp-dash" onClick={() => { handleCloseMenu(); navigate('/employer/dashboard'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><DashboardIcon fontSize="small" color="primary" /></ListItemIcon>
+                      Employer Dashboard
+                    </MenuItem>,
                     <MenuItem key="nav-ats" onClick={() => { handleCloseMenu(); navigate('/employer/ats'); }} sx={{ py: 1.5 }}>
                       <ListItemIcon><BusinessIcon fontSize="small" color="secondary" /></ListItemIcon>
                       ATS Recruitment Workspace
                     </MenuItem>,
-                    <MenuItem key="nav-interviews-emp" onClick={() => { handleCloseMenu(); navigate('/employer/interviews'); }} sx={{ py: 1.5 }}>
-                      <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      Interviews Portal
+                    <MenuItem key="nav-team" onClick={() => { handleCloseMenu(); navigate('/employer/team'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><PeopleIcon fontSize="small" color="info" /></ListItemIcon>
+                      Team Management
                     </MenuItem>,
-                    <MenuItem key="nav-offers-emp" onClick={() => { handleCloseMenu(); navigate('/employer/offers'); }} sx={{ py: 1.5 }}>
-                      <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      Job Offers Portal
+                    <MenuItem key="nav-analytics" onClick={() => { handleCloseMenu(); navigate('/employer/analytics'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><AssessmentIcon fontSize="small" color="warning" /></ListItemIcon>
+                      Employer Analytics
                     </MenuItem>,
-                    <MenuItem key="nav-dashboard" onClick={() => { handleCloseMenu(); navigate('/company/dashboard'); }} sx={{ py: 1.5 }}>
+                    <MenuItem key="nav-company" onClick={() => { handleCloseMenu(); navigate('/employer/company'); }} sx={{ py: 1.5 }}>
                       <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      Company Dashboard
+                      Company Profile & Settings
                     </MenuItem>,
                     <MenuItem key="nav-post-job" onClick={() => { handleCloseMenu(); navigate('/jobs/new'); }} sx={{ py: 1.5 }}>
                       <ListItemIcon><AddCircleIcon fontSize="small" /></ListItemIcon>

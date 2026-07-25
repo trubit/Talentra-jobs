@@ -93,6 +93,7 @@ export function AppRoutes() {
         <Route element={<RoleRoute allowedRoles={['EMPLOYER', 'ADMIN']} />}>
           <Route element={<PublicLayout />}>
             <Route path="/employer/dashboard" element={<EmployerDashboardHomePage />} />
+            <Route path="/employer/company" element={<EmployerCompanyDashboardPage />} />
             <Route path="/company/dashboard" element={<EmployerCompanyDashboardPage />} />
             <Route path="/employer/ats" element={<EmployerAtsDashboardPage />} />
             <Route path="/employer/applications/:id" element={<ApplicantReviewPage />} />

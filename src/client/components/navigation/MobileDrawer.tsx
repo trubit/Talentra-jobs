@@ -9,6 +9,9 @@ import BusinessIcon from '@mui/icons-material/Business';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ShieldIcon from '@mui/icons-material/Shield';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 import { NavLink } from './NavLink';
 import { Logo } from './Logo';
 import { useThemeStore } from '../../store/themeStore';
@@ -178,6 +181,16 @@ export function MobileDrawer({ open, onClose, navItems }: MobileDrawerProps) {
                 <Button
                   fullWidth
                   variant="contained"
+                  color="primary"
+                  startIcon={<DashboardIcon />}
+                  onClick={() => handleNav('/employer/dashboard')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  Employer Dashboard
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
                   color="secondary"
                   startIcon={<BusinessIcon />}
                   onClick={() => handleNav('/employer/ats')}
@@ -188,32 +201,32 @@ export function MobileDrawer({ open, onClose, navItems }: MobileDrawerProps) {
                 <Button
                   fullWidth
                   variant="outlined"
-                  color="secondary"
-                  startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/employer/interviews')}
+                  color="info"
+                  startIcon={<PeopleIcon />}
+                  onClick={() => handleNav('/employer/team')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  Interviews Portal
+                  Team Management
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="warning"
+                  startIcon={<AssessmentIcon />}
+                  onClick={() => handleNav('/employer/analytics')}
+                  sx={{ justifyContent: 'flex-start' }}
+                >
+                  Employer Analytics
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
                   color="secondary"
                   startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/employer/offers')}
+                  onClick={() => handleNav('/employer/company')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  Job Offers Portal
-                </Button>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  color="secondary"
-                  startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/company/dashboard')}
-                  sx={{ justifyContent: 'flex-start' }}
-                >
-                  Company Dashboard
+                  Company Profile & Settings
                 </Button>
                 <Button
                   fullWidth
