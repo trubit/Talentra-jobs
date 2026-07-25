@@ -39,6 +39,7 @@ const CandidateInterviewsPage = lazy(() => import('../features/interviews/pages/
 const EmployerInterviewsPage = lazy(() => import('../features/interviews/pages/EmployerInterviewsPage').then((m) => ({ default: m.EmployerInterviewsPage })));
 const CandidateOffersPage = lazy(() => import('../features/offers/pages/CandidateOffersPage').then((m) => ({ default: m.CandidateOffersPage })));
 const EmployerOffersPage = lazy(() => import('../features/offers/pages/EmployerOffersPage').then((m) => ({ default: m.EmployerOffersPage })));
+const EmployerDashboardHomePage = lazy(() => import('../features/employer-dashboard/dashboard-home/EmployerDashboardHomePage').then((m) => ({ default: m.EmployerDashboardHomePage })));
 
 // Lazy loaded auth pages
 const LoginPage = lazy(() => import('../features/auth/pages/LoginPage').then((m) => ({ default: m.LoginPage })));
@@ -89,6 +90,7 @@ export function AppRoutes() {
         {/* ── EMPLOYER / ADMIN ONLY Routes ────────────────────────────── */}
         <Route element={<RoleRoute allowedRoles={['EMPLOYER', 'ADMIN']} />}>
           <Route element={<PublicLayout />}>
+            <Route path="/employer/dashboard" element={<EmployerDashboardHomePage />} />
             <Route path="/company/dashboard" element={<EmployerCompanyDashboardPage />} />
             <Route path="/employer/ats" element={<EmployerAtsDashboardPage />} />
             <Route path="/employer/applications/:id" element={<ApplicantReviewPage />} />
