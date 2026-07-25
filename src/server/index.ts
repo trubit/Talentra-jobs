@@ -56,8 +56,8 @@ async function bootstrap(): Promise<void> {
     await seedDatabase();
 
     // Start HTTP server
-    server.listen(env.PORT, () => {
-      logger.info(`✅ Server running on port ${env.PORT}`);
+    server.listen(env.PORT, '0.0.0.0', () => {
+      logger.info(`✅ Server running on port ${env.PORT} (listening on 0.0.0.0)`);
       logger.info(`   API: ${env.SERVER_URL}/api`);
       logger.info(`   Health: ${env.SERVER_URL}/api/health`);
     });

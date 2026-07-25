@@ -1,7 +1,13 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '../features/auth/store/useAuthStore';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const getApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+  const host = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+  return `http://${host}:5000`;
+};
+
+const API_URL = getApiUrl();
 
 export const apiClient = axios.create({
   baseURL: `${API_URL}/api/v1`,
