@@ -927,21 +927,21 @@ export function EmployerCompanyDashboardPage() {
       {/* Top Title Banner */}
       <Box sx={{ py: 5, bgcolor: 'background.surface', borderBottom: '1px solid', borderColor: 'divider' }}>
         <Container maxWidth="xl">
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: 'column', md: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', md: 'center' }} spacing={2.5}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Box sx={{ p: 1.5, borderRadius: '12px', bgcolor: 'secondary.main', color: '#fff' }}>
+              <Box sx={{ p: 1.5, borderRadius: '12px', bgcolor: 'secondary.main', color: '#fff', flexShrink: 0 }}>
                 <BusinessIcon />
               </Box>
               <Box>
-                <Typography variant="h4" fontWeight={800}>Company Portal</Typography>
-                <Typography variant="body1" color="text.secondary">Branding, culture, office photos, benefits, and team dashboard</Typography>
+                <Typography variant="h4" fontWeight={800} sx={{ fontSize: { xs: '1.5rem', sm: '2.125rem' } }}>Company Portal</Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>Branding, culture, office photos, benefits, and team dashboard</Typography>
               </Box>
             </Stack>
-            <Stack direction="row" spacing={1.5}>
-              <Button variant="contained" color="primary" component={Link} to="/employer/ats">
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ width: { xs: '100%', md: 'auto' } }}>
+              <Button variant="contained" color="primary" component={Link} to="/employer/ats" fullWidth sx={{ width: { sm: 'auto' } }}>
                 ATS Recruitment Pipeline
               </Button>
-              <Button variant="contained" color="secondary" startIcon={<AddIcon />} onClick={handleCreateCompanyClick}>
+              <Button variant="contained" color="secondary" startIcon={<AddIcon />} onClick={handleCreateCompanyClick} fullWidth sx={{ width: { sm: 'auto' } }}>
                 Add Company
               </Button>
             </Stack>
@@ -1039,18 +1039,18 @@ export function EmployerCompanyDashboardPage() {
           <Grid size={{ xs: 12, md: 8 }}>
             {selectedCompany ? (
               <Paper sx={{ borderRadius: '20px', overflow: 'hidden' }}>
-                <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.surface' }}>
-                  <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Box sx={{ p: { xs: 2.5, sm: 3 }, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.surface' }}>
+                  <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={2}>
                     <Stack direction="row" spacing={2} alignItems="center">
-                      <Avatar src={selectedCompany.logoUrl} variant="rounded" sx={{ width: 48, height: 48, bgcolor: 'secondary.main' }}>
+                      <Avatar src={selectedCompany.logoUrl} variant="rounded" sx={{ width: 48, height: 48, bgcolor: 'secondary.main', flexShrink: 0 }}>
                         {selectedCompany.name.charAt(0)}
                       </Avatar>
                       <Box>
-                        <Typography variant="h5" fontWeight={800}>{selectedCompany.name}</Typography>
+                        <Typography variant="h5" fontWeight={800} sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>{selectedCompany.name}</Typography>
                         <Typography variant="caption" color="text.secondary">{selectedCompany.industry} • Headquarters: {selectedCompany.headquarters}</Typography>
                       </Box>
                     </Stack>
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                       <Button variant="outlined" color="secondary" size="small" href={`/company/${selectedCompany.slug || selectedCompany._id}`} target="_blank">
                         Public View
                       </Button>
@@ -1145,7 +1145,7 @@ export function EmployerCompanyDashboardPage() {
                   {/* TAB 2: BENEFITS */}
                   {tabIndex === 2 && (
                     <Stack spacing={3}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1.5}>
                         <Typography variant="h6" fontWeight={700}>Benefits &amp; Perks</Typography>
                         <Button variant="outlined" color="secondary" size="small" startIcon={<EditIcon />} onClick={() => setBenefitsDialogOpen(true)}>
                           Configure Benefits
@@ -1168,7 +1168,7 @@ export function EmployerCompanyDashboardPage() {
                   {/* TAB 3: GALLERY */}
                   {tabIndex === 3 && (
                     <Stack spacing={3}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1.5}>
                         <Typography variant="h6" fontWeight={700}>Office Photo Gallery</Typography>
                         <Button variant="contained" color="secondary" size="small" component="label" startIcon={uploadingGallery ? <CircularProgress size={16} color="inherit" /> : <AddIcon />} disabled={uploadingGallery}>
                           Upload Photo
@@ -1213,16 +1213,16 @@ export function EmployerCompanyDashboardPage() {
                       <Typography variant="h6" fontWeight={700}>Branding Assets</Typography>
 
                       {/* Company Logo Asset */}
-                      <Paper sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
+                      <Paper sx={{ p: { xs: 2.5, sm: 3 }, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
                         <Typography variant="subtitle1" fontWeight={700} gutterBottom>Company Logo</Typography>
                         <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 2 }}>
                           This logo will appear on your public profile page and job postings. (Recommended: 400x400px square image)
                         </Typography>
-                        <Stack direction="row" spacing={3} alignItems="center">
+                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} alignItems={{ xs: 'flex-start', sm: 'center' }}>
                           <Avatar src={selectedCompany.logoUrl} variant="rounded" sx={{ width: 80, height: 80, bgcolor: 'secondary.main' }}>
                             {selectedCompany.name.charAt(0)}
                           </Avatar>
-                          <Stack direction="row" spacing={1}>
+                          <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                             <Button variant="outlined" color="secondary" startIcon={<UploadFileIcon />} component="label" disabled={uploadingLogo}>
                               {uploadingLogo ? 'Uploading…' : selectedCompany.logoUrl ? 'Change Logo' : 'Upload Logo'}
                               <input type="file" hidden accept="image/*" onChange={handleLogoUpload} />
@@ -1237,7 +1237,7 @@ export function EmployerCompanyDashboardPage() {
                       </Paper>
 
                       {/* Cover Image Asset */}
-                      <Paper sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
+                      <Paper sx={{ p: { xs: 2.5, sm: 3 }, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
                         <Typography variant="subtitle1" fontWeight={700} gutterBottom>Cover / Banner Image</Typography>
                         <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 2 }}>
                           This banner image will span across the top of your public company page. (Recommended: 1200x400px landscape image)
@@ -1247,10 +1247,10 @@ export function EmployerCompanyDashboardPage() {
                             component="img"
                             src={selectedCompany.coverImageUrl}
                             alt="Company banner preview"
-                            sx={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: '8px', mb: 2 }}
+                            sx={{ width: '100%', height: { xs: 120, sm: 180 }, objectFit: 'cover', borderRadius: '8px', mb: 2 }}
                           />
                         )}
-                        <Stack direction="row" spacing={1}>
+                        <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                           <Button variant="outlined" color="secondary" startIcon={<UploadFileIcon />} component="label" disabled={uploadingCover}>
                             {uploadingCover ? 'Uploading…' : selectedCompany.coverImageUrl ? 'Change Banner' : 'Upload Banner'}
                             <input type="file" hidden accept="image/*" onChange={handleCoverUpload} />
@@ -1267,7 +1267,7 @@ export function EmployerCompanyDashboardPage() {
 
                   {tabIndex === 5 && (
                     <Stack spacing={3}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1.5}>
                         <Typography variant="h6" fontWeight={700}>Job Listings ({jobs.filter(j => j.company?._id === selectedCompanyId).length})</Typography>
                         <Button
                           variant="contained"
@@ -1390,7 +1390,7 @@ export function EmployerCompanyDashboardPage() {
                   {/* TAB 6: APPLICANTS */}
                   {tabIndex === 6 && (
                     <Stack spacing={3}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1.5}>
                         <Box>
                           <Typography variant="h6" fontWeight={700}>Applicants Management</Typography>
                           <Typography variant="caption" color="text.secondary">
