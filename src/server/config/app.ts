@@ -25,6 +25,7 @@ import interviewRouter from '../modules/interviews/routes/interview.routes.js';
 import offerRouter from '../modules/offers/routes/offer.routes.js';
 import hiringRouter from '../modules/hiring/routes/hiring.routes.js';
 import employerDashboardRouter from '../modules/employer-dashboard/routes/dashboard.routes.js';
+import recruitmentWorkspaceRouter from '../modules/recruitment-workspace/routes/workspace.routes.js';
 
 /**
  * Express application factory.
@@ -65,6 +66,7 @@ export function createApp(): Application {
   app.use('/api/v1/applications', applicationRouter);
   app.use('/api/v1/employer/ats', atsRouter);
   app.use('/api/v1/employer/dashboard', employerDashboardRouter);
+  app.use('/api/v1/recruitment-workspace', recruitmentWorkspaceRouter);
   app.use('/api/v1/interviews', interviewRouter);
   app.use('/api/v1/offers', offerRouter);
   app.use('/api/v1/hiring', hiringRouter);
