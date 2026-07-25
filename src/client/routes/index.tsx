@@ -40,6 +40,7 @@ const EmployerInterviewsPage = lazy(() => import('../features/interviews/pages/E
 const CandidateOffersPage = lazy(() => import('../features/offers/pages/CandidateOffersPage').then((m) => ({ default: m.CandidateOffersPage })));
 const EmployerOffersPage = lazy(() => import('../features/offers/pages/EmployerOffersPage').then((m) => ({ default: m.EmployerOffersPage })));
 const EmployerDashboardHomePage = lazy(() => import('../features/employer-dashboard/dashboard-home/EmployerDashboardHomePage').then((m) => ({ default: m.EmployerDashboardHomePage })));
+const TeamManagementPage = lazy(() => import('../features/team-management/pages/TeamManagementPage').then((m) => ({ default: m.TeamManagementPage })));
 
 // Lazy loaded auth pages
 const LoginPage = lazy(() => import('../features/auth/pages/LoginPage').then((m) => ({ default: m.LoginPage })));
@@ -96,6 +97,7 @@ export function AppRoutes() {
             <Route path="/employer/applications/:id" element={<ApplicantReviewPage />} />
             <Route path="/employer/interviews" element={<EmployerInterviewsPage />} />
             <Route path="/employer/offers" element={<EmployerOffersPage />} />
+            <Route path="/employer/team" element={<TeamManagementPage />} />
             <Route path="/jobs/new" element={<JobPostPage />} />
             <Route path="/jobs/edit/:id" element={<JobPostPage />} />
           </Route>

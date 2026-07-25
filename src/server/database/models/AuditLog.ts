@@ -1,20 +1,23 @@
 import { Schema, model, Document, Model, Types } from 'mongoose';
 
 export interface IAuditLog extends Document {
-  user?: Types.ObjectId;
+  _id: Types.ObjectId;
+  actor: Types.ObjectId;
   action: string;
   resource: string;
-  ipAddress: string;
-  userAgent: string;
+  resourceId?: string;
   details?: Record<string, unknown>;
+  ipAddress?: string;
+  userAgent?: string;
   createdAt: Date;
 }
 
 const auditLogSchema = new Schema<IAuditLog>(
   {
-    user: {
+    actor: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
       index: true,
     },
     action: {
@@ -25,22 +28,22 @@ const auditLogSchema = new Schema<IAuditLog>(
     resource: {
       type: String,
       required: true,
+      index: true,
     },
-    ipAddress: {
+    resourceId: {
       type: String,
-      required: true,
-    },
-    userAgent: {
-      type: String,
-      required: true,
     },
     details: {
       type: Schema.Types.Mixed,
     },
+    ipAddress: String,
+    userAgent: String,
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
   }
 );
+
+auditLogSchema.index({ actor: 1, createdAt: -1 });
 
 export const AuditLog: Model<IAuditLog> = model<IAuditLog>('AuditLog', auditLogSchema);
