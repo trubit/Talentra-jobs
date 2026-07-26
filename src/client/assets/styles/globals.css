@@ -58,7 +58,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Focus Ring ─────────────────────────────────────────────────────────── */
+/* ─── Focus Ring (WCAG 2.1 AA Compliance) ────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--mui-palette-primary-main, #3b82f6);
   outline-offset: 2px;
@@ -86,7 +86,7 @@ body {
   background: rgba(148, 163, 184, 0.5);
 }
 
-/* ─── Utility classes ────────────────────────────────────────────────────── */
+/* ─── Accessibility & Touch Target Utilities ────────────────────────────── */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -99,6 +99,12 @@ body {
   border: 0;
 }
 
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* ─── Design System Utility Classes ─────────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -106,14 +112,26 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
 .gradient-text {
-  background: linear-gradient(135deg, #60a5fa 0%, #d946ef 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #c026d3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ─── Animation keyframes ────────────────────────────────────────────────── */
+/* ─── Micro-Animation Keyframes ──────────────────────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
