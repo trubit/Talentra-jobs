@@ -160,21 +160,25 @@ export function Header() {
 
                   {/* JOB SEEKER menu items */}
                   {user.role === 'JOB_SEEKER' && [
+                    <MenuItem key="nav-jobseeker-overview" onClick={() => { handleCloseMenu(); navigate('/dashboard'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><DashboardIcon fontSize="small" color="primary" /></ListItemIcon>
+                      Candidate Dashboard
+                    </MenuItem>,
+                    <MenuItem key="nav-app-workspace" onClick={() => { handleCloseMenu(); navigate('/workspace/applications'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><BusinessIcon fontSize="small" color="secondary" /></ListItemIcon>
+                      Application Workspace
+                    </MenuItem>,
+                    <MenuItem key="nav-resume-builder" onClick={() => { handleCloseMenu(); navigate('/workspace/resume-builder'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><AccountCircleIcon fontSize="small" color="info" /></ListItemIcon>
+                      Resume Builder & Portfolio
+                    </MenuItem>,
+                    <MenuItem key="nav-career-ai" onClick={() => { handleCloseMenu(); navigate('/workspace/career-intelligence'); }} sx={{ py: 1.5 }}>
+                      <ListItemIcon><ShieldIcon fontSize="small" color="warning" /></ListItemIcon>
+                      AI Career Intelligence
+                    </MenuItem>,
                     <MenuItem key="nav-profile" onClick={() => { handleCloseMenu(); navigate('/profile/me'); }} sx={{ py: 1.5 }}>
                       <ListItemIcon><AccountCircleIcon fontSize="small" /></ListItemIcon>
-                      My Profile & Dashboard
-                    </MenuItem>,
-                    <MenuItem key="nav-applications" onClick={() => { handleCloseMenu(); navigate('/applications/me'); }} sx={{ py: 1.5 }}>
-                      <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      My Applications
-                    </MenuItem>,
-                    <MenuItem key="nav-interviews-seeker" onClick={() => { handleCloseMenu(); navigate('/interviews/me'); }} sx={{ py: 1.5 }}>
-                      <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      My Interviews
-                    </MenuItem>,
-                    <MenuItem key="nav-offers-seeker" onClick={() => { handleCloseMenu(); navigate('/offers/me'); }} sx={{ py: 1.5 }}>
-                      <ListItemIcon><BusinessIcon fontSize="small" /></ListItemIcon>
-                      My Job Offers
+                      My Profile
                     </MenuItem>,
                     <MenuItem key="nav-bookmarks" onClick={() => { handleCloseMenu(); navigate('/bookmarks'); }} sx={{ py: 1.5 }}>
                       <ListItemIcon><BookmarkIcon fontSize="small" /></ListItemIcon>

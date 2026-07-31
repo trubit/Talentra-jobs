@@ -28,6 +28,10 @@ import employerDashboardRouter from '../modules/employer-dashboard/routes/dashbo
 import recruitmentWorkspaceRouter from '../modules/recruitment-workspace/routes/workspace.routes.js';
 import teamRouter from '../modules/team-management/routes/team.routes.js';
 import analyticsRouter from '../modules/analytics/routes/analytics.routes.js';
+import jobseekerDashboardRouter from '../modules/jobseeker-dashboard/routes/jobseekerDashboard.routes.js';
+import applicationWorkspaceRouter from '../modules/application-workspace/routes/applicationWorkspace.routes.js';
+import resumeBuilderRouter from '../modules/resume-builder/routes/resumeBuilder.routes.js';
+import careerIntelligenceRouter from '../modules/career-intelligence/routes/careerIntelligence.routes.js';
 
 /**
  * Express application factory.
@@ -66,6 +70,10 @@ export function createApp(): Application {
   app.use('/api/v1', bookmarkRouter);
   app.use('/api/v1/admin', adminRouter);
   app.use('/api/v1/applications', applicationRouter);
+  app.use('/api/v1/jobseeker/dashboard', jobseekerDashboardRouter);
+  app.use('/api/v1/jobseeker/application-workspace', applicationWorkspaceRouter);
+  app.use('/api/v1/jobseeker/resume-builder', resumeBuilderRouter);
+  app.use('/api/v1/career-intelligence', careerIntelligenceRouter);
   app.use('/api/v1/employer/ats', atsRouter);
   app.use('/api/v1/employer/dashboard', employerDashboardRouter);
   app.use('/api/v1/recruitment-workspace', recruitmentWorkspaceRouter);

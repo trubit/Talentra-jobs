@@ -131,37 +131,37 @@ export function MobileDrawer({ open, onClose, navItems }: MobileDrawerProps) {
                   fullWidth
                   variant="outlined"
                   startIcon={<AccountCircleIcon />}
-                  onClick={() => handleNav('/profile/me')}
+                  onClick={() => handleNav('/dashboard')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  My Profile & Dashboard
+                  Candidate Dashboard
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
                   startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/applications/me')}
+                  onClick={() => handleNav('/workspace/applications')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  My Applications
+                  Application Workspace
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
-                  startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/interviews/me')}
+                  startIcon={<AccountCircleIcon />}
+                  onClick={() => handleNav('/workspace/resume-builder')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  My Scheduled Interviews
+                  Resume Builder & Portfolio
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
-                  startIcon={<BusinessIcon />}
-                  onClick={() => handleNav('/offers/me')}
+                  startIcon={<ShieldIcon />}
+                  onClick={() => handleNav('/workspace/career-intelligence')}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  My Job Offers
+                  AI Career Intelligence
                 </Button>
                 <Button
                   fullWidth

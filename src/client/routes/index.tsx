@@ -23,6 +23,10 @@ const CareerResourcesPage = lazy(() => import('../pages/CareerResourcesPage').th
 const PublicCandidateProfilePage = lazy(() => import('../pages/PublicCandidateProfilePage').then((m) => ({ default: m.PublicCandidateProfilePage })));
 const PublicCompanyProfilePage = lazy(() => import('../pages/PublicCompanyProfilePage').then((m) => ({ default: m.PublicCompanyProfilePage })));
 const CandidateDashboardPage = lazy(() => import('../pages/CandidateDashboardPage').then((m) => ({ default: m.CandidateDashboardPage })));
+const JobSeekerDashboardPage = lazy(() => import('../features/jobseeker-dashboard/pages/JobSeekerDashboardPage').then((m) => ({ default: m.JobSeekerDashboardPage })));
+const ApplicationWorkspacePage = lazy(() => import('../features/application-workspace/pages/ApplicationWorkspacePage').then((m) => ({ default: m.ApplicationWorkspacePage })));
+const ResumeBuilderPage = lazy(() => import('../features/resume-builder/pages/ResumeBuilderPage').then((m) => ({ default: m.ResumeBuilderPage })));
+const CareerIntelligencePage = lazy(() => import('../features/career-intelligence/pages/CareerIntelligencePage').then((m) => ({ default: m.CareerIntelligencePage })));
 const EmployerCompanyDashboardPage = lazy(() => import('../pages/EmployerCompanyDashboardPage').then((m) => ({ default: m.EmployerCompanyDashboardPage })));
 const JobPostPage = lazy(() => import('../pages/JobPostPage').then((m) => ({ default: m.JobPostPage })));
 const JobSearchPage = lazy(() => import('../pages/JobSearchPage').then((m) => ({ default: m.JobSearchPage })));
@@ -81,6 +85,10 @@ export function AppRoutes() {
         {/* ── JOB SEEKER ONLY Routes ─────────────────────────────────────── */}
         <Route element={<RoleRoute allowedRoles={['JOB_SEEKER']} />}>
           <Route element={<PublicLayout />}>
+            <Route path="/dashboard" element={<JobSeekerDashboardPage />} />
+            <Route path="/workspace/applications" element={<ApplicationWorkspacePage />} />
+            <Route path="/workspace/resume-builder" element={<ResumeBuilderPage />} />
+            <Route path="/workspace/career-intelligence" element={<CareerIntelligencePage />} />
             <Route path="/profile/me" element={<CandidateDashboardPage />} />
             <Route path="/applications/me" element={<CandidateApplicationsPage />} />
             <Route path="/interviews/me" element={<CandidateInterviewsPage />} />
