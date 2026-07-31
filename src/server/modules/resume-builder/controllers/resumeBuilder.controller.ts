@@ -62,7 +62,7 @@ export class ResumeBuilderController {
     }
   };
 
-  generateShareToken = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  generateShareToken = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const shareToken = `share_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
       res.json({
